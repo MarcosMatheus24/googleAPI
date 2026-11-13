@@ -203,7 +203,7 @@ export function registerGoogleAuthRoutes(app: Express) {
     const cookiePayload = encodeState({ value: state, redirectUri, issuedAt: Date.now() });
     res.cookie(getStateCookieName(req), cookiePayload, {
       ...getCookieOptions(req),
-      maxAge: STATE_MAX_AGE_SECONDS,
+      maxAge: STATE_MAX_AGE_SECONDS * 1000,
     });
 
     const authorizeUrl = new URL(GOOGLE_AUTHORIZE_URL);
@@ -251,7 +251,7 @@ export function registerGoogleAuthRoutes(app: Express) {
       const session = await createSession(profile);
       res.cookie(SESSION_COOKIE, session, {
         ...getCookieOptions(req),
-        maxAge: SESSION_MAX_AGE_SECONDS,
+        maxAge: SESSION_MAX_AGE_SECONDS * 1000,
       });
       res.redirect(302, "/");
     } catch (error) {
