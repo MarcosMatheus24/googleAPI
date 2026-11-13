@@ -1,0 +1,6 @@
+{
+  "routes": [
+    { "path": "/", "title": "Login Google" },
+    { "path": "/404", "title": "Página não encontrada" }
+  ]
+}
